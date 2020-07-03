@@ -1,7 +1,11 @@
 package io.github.teccheck.connectfourlib;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 public class ConnectFourGame {
 
+	public static final int STATUS_MOVE_DRAW = -2;
 	public static final int STATUS_MOVE_FAILED = -1;
 	public static final int STATUS_MOVE_NO_WINNER = 0;
 
@@ -51,6 +55,8 @@ public class ConnectFourGame {
 		if (checkForLine(player, x, y, 1, 0) || checkForLine(player, x, y, 0, 1) || checkForLine(player, x, y, 1, 1)
 				|| checkForLine(player, x, y, -1, 1))
 			return player;
+
+		if (Arrays.stream(table).flatMapToInt(IntStream::of).filter(i -> i == 0).count() == 0) return STATUS_MOVE_DRAW;
 
 		return 0;
 	}
