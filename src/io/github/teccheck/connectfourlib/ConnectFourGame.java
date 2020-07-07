@@ -56,7 +56,7 @@ public class ConnectFourGame {
 				|| checkForLine(player, x, y, -1, 1))
 			return player;
 
-		if (Arrays.stream(table).flatMapToInt(IntStream::of).filter(i -> i == 0).count() == 0) return STATUS_MOVE_DRAW;
+		if (Arrays.stream(table).flatMapToInt(IntStream::of).noneMatch(i -> i == 0)) return STATUS_MOVE_DRAW;
 
 		return 0;
 	}
